@@ -53,23 +53,23 @@ variable "vm_web_image_family" {
   description = "Family of the image to be used for the VM" 
 }
 
-variable "vm_web_cores" {
-  type        = number
-  default     = 2
-  description = "Number of cores for the VM"
-}
+# variable "vm_web_cores" {
+# type        = number
+# default     = 2
+# description = "Number of cores for the VM"
+#}
 
-variable "vm_web_memory" {
-  type        = number
-  default     = 1
-  description = "Amount of memory in GB for the VM"
-}
+#variable "vm_web_memory" {
+# type        = number
+# default     = 1
+# description = "Amount of memory in GB for the VM"
+#}
 
-variable "vm_web_core_fraction" {
-  type        = number
-  default     = 20
-  description = "CPU performance share for the VM"
-}
+#variable "vm_web_core_fraction" {
+#  type        = number
+#  default     = 20
+#  description = "CPU performance share for the VM"
+#}
 
 variable "vm_web_preemptible" {
   type        = bool
@@ -95,4 +95,40 @@ variable "vms_ssh_root_key" {
   type        = string
   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjIFDCmJUNxlZjwGOz3YFEc4hSIqBv+njzLj2p9N6VK balanyuken@iMac-Evgenia.local"
   description = "ssh-keygen -t ed25519"
+}
+
+
+variable "vms_resources" {
+  type = map(object({
+    cores          = number
+    memory         = number
+    core_fraction  = number
+    hdd_size       = number
+    hdd_type       = string
+  }))
+  default = {
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 20
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+    },
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+    }
+  }
+}
+
+
+variable "vms_metadata" {
+  type = map(string)
+  default = {
+    serial-port-enable = "1"
+    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjIFDCmJUNxlZjwGOz3YFEc4hSIqBv+njzLj2p9N6VK balanyuken@iMac-Evgenia.local"
+  }
 }
