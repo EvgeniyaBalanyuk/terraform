@@ -30,23 +30,23 @@ variable "vpc_db_name" {
   description = "VPC network & subnet name"
 }
 
-variable "vm_db_cores" {
-  type        = number
-  default     = 2
-  description = "Number of cores for the database VM"
-}
+#variable "vm_db_cores" {
+# type        = number
+# default     = 2
+# description = "Number of cores for the database VM"
+#}
 
-variable "vm_db_memory" {
-  type        = number
-  default     = 2
-  description = "Amount of memory in GB for the database VM"
-}
+#variable "vm_db_memory" {
+# type        = number
+# default     = 2
+# description = "Amount of memory in GB for the database VM"
+#}
 
-variable "vm_db_core_fraction" {
-  type        = number
-  default     = 20
-  description = "CPU performance share for the database VM"
-}
+#variable "vm_db_core_fraction" {
+# type        = number
+# default     = 20
+# description = "CPU performance share for the database VM"
+#}
 
 variable "vm_db_preemptible" {
   type        = bool
